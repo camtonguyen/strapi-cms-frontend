@@ -4,7 +4,7 @@ import {
   ApolloClient,
 } from '@apollo/client-integration-react-router';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = `${import.meta.env.VITE_API_URL}/graphql`;
 
 // `request` will be available on the server during SSR or in loaders, but not in the browser
 export const makeClient = (request?: Request) => {
