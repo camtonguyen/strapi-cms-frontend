@@ -20,7 +20,17 @@ export interface SharedLogo {
 export interface HeaderData {
   logo: SharedLogo;
   navItems?: SharedLink[];
+  socialItems?: SharedLink[];
   cta?: SharedLink;
+}
+
+export interface FooterData {
+  logo: SharedLogo;
+  navItems?: SharedLink[];
+  cta?: SharedLink;
+  shortIntro?: string;
+  copyright?: string;
+  socialItems?: SharedLink[];
 }
 
 export interface GlobalData {
@@ -28,6 +38,7 @@ export interface GlobalData {
     title: string;
     description: string;
     header: HeaderData;
+    footer: FooterData;
   };
 }
 

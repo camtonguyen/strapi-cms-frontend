@@ -28,6 +28,24 @@ export const GLOBAL_QUERY = gql`
           isExternal
         }
       }
+      footer {
+        logo {
+          href
+          label
+          image {
+            url
+            alternativeText
+          }
+        }
+        copyright
+        shortIntro
+        socialItems {
+          id
+          label
+          href
+          isExternal
+        }
+      }
     }
   }
 `;
