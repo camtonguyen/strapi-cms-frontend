@@ -9,9 +9,9 @@ export const loader = createQueryLoader(GLOBAL_QUERY, 'globalQueryRef');
 
 const MainLayout = () => {
   return (
-    <div className='min-h-screen bg-black text-white'>
+    <div className='min-h-screen bg-black text-white px-4 min-lg:px-2'>
       <Header />
-      <main className='container mx-auto py-12 min-h-[50vh]'>
+      <main className='container mx-auto py-12 min-h-[50vh] flex-1'>
         <Outlet />
       </main>
       <Footer />

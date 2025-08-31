@@ -1,6 +1,7 @@
 import { Link, NavLink, useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
-import type { GlobalData, SharedLink, GlobalQueryRef } from '~/types/global';
+import type { GlobalData, GlobalQueryRef } from '~/types/global';
+import type { SharedLink } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';
 import { Button } from '~/components/ui/button';
 
@@ -38,12 +39,20 @@ const Header = () => {
         </Link>
 
         {/* Navigation Items */}
-        <nav className='hidden md:flex items-center space-x-6 text-sm'>
+        <nav
+          role='navigation'
+          className='hidden md:flex items-center space-x-6 text-sm'
+        >
           {header.navItems?.map((item: SharedLink) => (
             <NavLink
               key={item.id}
               to={item.href}
-              className='text-gray-400 hover:text-white transition-colors'
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-white transition-all relative after:absolute after:content-[""] after:w-full after:h-0.5 after:bg-purple-500 after:block after:-bottom-[5px]'
+                  : 'text-gray-400 hover:text-white transition-colors'
+              }
+              aria-label={item.label}
             >
               {item.label}
             </NavLink>

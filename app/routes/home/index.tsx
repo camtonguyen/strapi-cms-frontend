@@ -1,10 +1,8 @@
 import type { Route } from './+types/index';
 import { useReadQuery } from '@apollo/client/react';
 import type { LandingData, LandingQueryRef } from '~/types/landing';
-import type { GlobalQueryRef } from '~/types/global';
 import { useLoaderData } from 'react-router';
-import { createMultiQueryLoader } from '~/utils/queryLoader';
-import { GLOBAL_QUERY } from '~/queries/global/global';
+import { createQueryLoader } from '~/utils/queryLoader';
 import { LANDING_QUERY } from '~/queries/pages/landing';
 
 import { HeroBanner } from '~/components/HeroBanner';
@@ -18,21 +16,16 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-// Load both queries in the index route
-export const loader = createMultiQueryLoader({
-  globalQueryRef: GLOBAL_QUERY,
-  landingQueryRef: LANDING_QUERY,
-});
+// Load the landing query in the index route
+export const loader = createQueryLoader(LANDING_QUERY, 'landingQueryRef');
 
-// Type for the multi-query loader data
-type MultiQueryData = {
-  globalQueryRef: GlobalQueryRef;
+type QueryData = {
   landingQueryRef: LandingQueryRef;
 };
 
 export default function Home() {
   // Get the query references from the current route's loader
-  const { landingQueryRef } = useLoaderData<MultiQueryData>();
+  const { landingQueryRef } = useLoaderData<QueryData>();
 
   // Use the query reference to get the data
   const { data } = useReadQuery(landingQueryRef);

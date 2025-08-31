@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
-import type { HeroBanner as HeroBannerType } from '~/types/landing';
-import { ButtonType } from '~/types/global';
+import type { HeroBanner as HeroBannerType } from '~/types/blocks';
+import { ButtonType } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { Button } from '~/components/ui/button';

@@ -1,4 +1,4 @@
-import type { Newsletter as NewsletterType } from '~/types/landing';
+import type { Newsletter as NewsletterType } from '~/types/blocks';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 

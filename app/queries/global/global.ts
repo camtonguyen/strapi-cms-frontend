@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { createQueryLoader } from '~/utils/queryLoader';
 
 export const GLOBAL_QUERY = gql`
   query GetGlobal {
@@ -49,6 +48,3 @@ export const GLOBAL_QUERY = gql`
     }
   }
 `;
-
-// Use the generic loader
-export const globalLoader = createQueryLoader(GLOBAL_QUERY, 'globalQueryRef');
