@@ -1,17 +1,22 @@
 import { Link, useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
-import { globalLoader } from '~/queries/global/global';
 import type { GlobalData, SharedLink, GlobalQueryRef } from '~/types/global';
 import { getStrapiUrl } from '~/utils/strapiUrl';
 import { Twitter, Facebook, Linkedin } from 'lucide-react';
 
+// Type for the parent layout loader data
+type LayoutData = {
+  globalQueryRef: GlobalQueryRef;
+};
+
 const Footer = () => {
-  // Get the query reference from the loader
-  const { globalQueryRef } = useLoaderData<typeof globalLoader>();
+  // Get the query reference from the parent layout's loader
+  const { globalQueryRef } = useLoaderData<LayoutData>();
   // Use the query reference to get the data
-  const { data } = useReadQuery(globalQueryRef as GlobalQueryRef);
+  const { data } = useReadQuery(globalQueryRef);
   const globalData = (data as GlobalData).global;
   const { footer } = globalData;
+
   return (
     <footer className='border-t border-gray-800 py-12 mt-auto'>
       <div className='container mx-auto px-4'>
@@ -47,6 +52,7 @@ const Footer = () => {
                     : Linkedin;
                 return (
                   <Link
+                    key={item.id}
                     to={item.href}
                     className='text-gray-400 hover:text-white'
                   >
@@ -66,4 +72,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default Footer;

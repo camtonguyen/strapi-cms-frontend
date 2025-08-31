@@ -1,14 +1,19 @@
 import { Link, NavLink, useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
-import { globalLoader } from '~/queries/global/global';
 import type { GlobalData, SharedLink, GlobalQueryRef } from '~/types/global';
 import { getStrapiUrl } from '~/utils/strapiUrl';
+import { Button } from '~/components/ui/button';
+
+// Type for the parent layout loader data
+type LayoutData = {
+  globalQueryRef: GlobalQueryRef;
+};
 
 const Header = () => {
-  // Get the query reference from the loader
-  const { globalQueryRef } = useLoaderData<typeof globalLoader>();
+  // Get the query reference from the parent layout's loader
+  const { globalQueryRef } = useLoaderData<LayoutData>();
   // Use the query reference to get the data
-  const { data } = useReadQuery(globalQueryRef as GlobalQueryRef);
+  const { data } = useReadQuery(globalQueryRef);
   const globalData = (data as GlobalData).global;
   const { header } = globalData;
 
@@ -47,9 +52,9 @@ const Header = () => {
 
         {/* CTA Button */}
         {header.cta && (
-          <button className='border-purple-500 text-purple-500 hover:bg-purple-950 hover:text-white'>
+          <Button className='bg-purple-600 hover:bg-purple-700 whitespace-nowrap cursor-pointer'>
             {header.cta.label}
-          </button>
+          </Button>
         )}
       </div>
     </header>
