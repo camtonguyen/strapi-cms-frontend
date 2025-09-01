@@ -1,11 +1,12 @@
 import type { QueryRef } from '@apollo/client/react';
 import type { PlainContent, FeatureArticles, FeatureTopics } from './blocks';
+import { ComponentBlocks } from '~/utils/constants';
 
 // Union type for all block components
 export type PageBlock =
-  | (PlainContent & { __typename: 'ComponentBlocksPlainContent' })
-  | (FeatureArticles & { __typename: 'ComponentBlocksFeatureArticles' })
-  | (FeatureTopics & { __typename: 'ComponentBlocksFeatureTopics' });
+  | (PlainContent & { __typename: typeof ComponentBlocks.PLAIN_CONTENT })
+  | (FeatureArticles & { __typename: typeof ComponentBlocks.FEATURE_ARTICLES })
+  | (FeatureTopics & { __typename: typeof ComponentBlocks.FEATURE_TOPICS });
 
 export interface Page {
   documentId: string;

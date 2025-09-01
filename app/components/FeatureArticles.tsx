@@ -36,6 +36,7 @@ export function FeatureArticles({
               publishDate={article.publishDate}
               topic={article?.topics?.[0]}
               slug={article?.slug}
+              id={article.documentId || article.id || ''}
             />
           ))}
         </div>
