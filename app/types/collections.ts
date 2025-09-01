@@ -16,6 +16,8 @@ export interface TopicTag {
 export interface Article extends SharedGeneralFields {
   slug: string;
   content?: BlocksContent;
+  author?: string;
+  timeRead?: number;
   publishDate: string;
   image?: ImageType;
   topics?: TopicTag[];

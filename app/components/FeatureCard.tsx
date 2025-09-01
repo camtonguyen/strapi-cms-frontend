@@ -19,6 +19,7 @@ interface FeaturedCardProps {
   publishDate: string;
   topic: TopicTag | undefined;
   slug?: string;
+  id: string | null;
 }
 function FeaturedCard({
   image,
@@ -27,6 +28,7 @@ function FeaturedCard({
   publishDate,
   topic,
   slug = '',
+  id,
 }: FeaturedCardProps) {
   return (
     <Card className='bg-gray-900 flex flex-col justify-between pt-0 border-gray-800 overflow-hidden hover:border-purple-500/50 transition-colors'>
@@ -68,8 +70,9 @@ function FeaturedCard({
         )}
         {slug && (
           <Link
-            to={`/articles/${slug}`}
+            to={`/article/${slug}`}
             className='text-purple-500 hover:text-purple-400'
+            state={{ id }}
           >
             Read more →
           </Link>

@@ -8,6 +8,7 @@ import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { FeatureArticles } from '~/components/FeatureArticles';
 import { FeatureTopics } from '~/components/FeatureTopics';
 import { NotFound } from '~/components/NotFound';
+import { ComponentBlocks } from '~/utils/constants';
 
 export const loader = createQueryLoader(
   PAGE_QUERY,
@@ -34,7 +35,7 @@ const DynamicPage = () => {
       {pageData?.blocks &&
         pageData?.blocks?.length > 0 &&
         pageData?.blocks?.map((block: PageBlock) => {
-          if (block.__typename === 'ComponentBlocksPlainContent') {
+          if (block.__typename === ComponentBlocks.PLAIN_CONTENT) {
             return (
               <section
                 className='html-content'
@@ -44,7 +45,7 @@ const DynamicPage = () => {
               </section>
             );
           }
-          if (block.__typename === 'ComponentBlocksFeatureArticles') {
+          if (block.__typename === ComponentBlocks.FEATURE_ARTICLES) {
             return (
               <FeatureArticles
                 key={`${block.__typename}-${block.id}`}
@@ -55,7 +56,7 @@ const DynamicPage = () => {
               />
             );
           }
-          if (block.__typename === 'ComponentBlocksFeatureTopics') {
+          if (block.__typename === ComponentBlocks.FEATURE_TOPICS) {
             return (
               <FeatureTopics
                 key={block.id}
