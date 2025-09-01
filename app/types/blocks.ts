@@ -5,7 +5,7 @@ import type {
   SharedInput,
   SharedLink,
 } from './shared';
-import type { Article } from './collections';
+import type { Article, Topic } from './collections';
 
 // Hero Banner component
 export interface HeroBanner {
@@ -29,7 +29,19 @@ export interface Newsletter extends SharedGeneralFields {
   submit: SharedLink;
 }
 
+// Markdown component
 export interface Markdown {
   id?: string;
   content?: string;
+}
+
+// Plain content component
+export interface PlainContent {
+  id?: string;
+  content?: BlocksContent;
+}
+export interface FeatureTopics {
+  id: string;
+  title: string;
+  topics?: Topic[];
 }

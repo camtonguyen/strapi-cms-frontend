@@ -1,15 +1,18 @@
 import type { QueryRef } from '@apollo/client/react';
-import type { Markdown } from './blocks';
+import type { PlainContent, FeatureArticles, FeatureTopics } from './blocks';
 
 // Union type for all block components
-export type PageBlock = Markdown;
+export type PageBlock =
+  | (PlainContent & { __typename: 'ComponentBlocksPlainContent' })
+  | (FeatureArticles & { __typename: 'ComponentBlocksFeatureArticles' })
+  | (FeatureTopics & { __typename: 'ComponentBlocksFeatureTopics' });
 
 export interface Page {
   documentId: string;
   title: string;
   slug: string;
   blocks?: PageBlock[];
-  __typename?: string;
+  __typename?: string | undefined;
 }
 
 export interface PageData {
