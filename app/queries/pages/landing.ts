@@ -1,7 +1,13 @@
 import { gql } from '@apollo/client';
-import { createQueryLoader } from '~/utils/queryLoader';
+import { FEATURE_ARTICLES_FRAGMENT } from '../fragments/blocks/featureArticles';
+import { HERO_BANNER_FRAGMENT } from '../fragments/blocks/heroBanner';
+import { NEWSLETTER_FRAGMENT } from '../fragments/blocks/newsletter';
 
 export const LANDING_QUERY = gql`
+  ${HERO_BANNER_FRAGMENT}
+  ${FEATURE_ARTICLES_FRAGMENT}
+  ${NEWSLETTER_FRAGMENT}
+
   query GetLandingPage {
     landingPage {
       title
@@ -9,63 +15,11 @@ export const LANDING_QUERY = gql`
       publishedAt
       updatedAt
       blocks {
-        ... on ComponentBlocksHeroBanner {
-          id
-          heading
-          content
-          buttons {
-            id
-            label
-            href
-            isExternal
-            type
-          }
-          image {
-            url
-            alternativeText
-          }
-        }
-        ... on ComponentBlocksFeatureArticles {
-          id
-          title
-          articles {
-            documentId
-            title
-            description
-            publishDate
-            image {
-              alternativeText
-              url
-            }
-            topics {
-              name
-              type
-            }
-          }
-        }
-        ... on ComponentBlocksNewsletter {
-          id
-          title
-          description
-          email {
-            label
-            placeholder
-            type
-          }
-          submit {
-            label
-            type
-            href
-            isExternal
-          }
-        }
+        __typename
+        ...HeroBannerFields
+        ...FeatureArticlesFields
+        ...NewsletterFields
       }
     }
   }
 `;
-
-// Use the generic loader
-export const landingLoader = createQueryLoader(
-  LANDING_QUERY,
-  'landingQueryRef'
-);

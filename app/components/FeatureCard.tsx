@@ -8,7 +8,8 @@ import {
 } from '~/components/ui/card';
 import { Link } from 'react-router';
 import { BrainCircuit, Clock, Eye } from 'lucide-react';
-import type { ImageType, TopicTag } from '~/types/landing';
+import type { TopicTag } from '~/types/collections';
+import type { ImageType } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';
 
 const CATEGORY_ICONS = {
@@ -32,7 +33,7 @@ function FeaturedCard({
   description,
   publishDate,
   topic,
-  slug = '/',
+  slug = '',
 }: FeaturedCardProps) {
   return (
     <Card className='bg-gray-900 flex flex-col justify-between pt-0 border-gray-800 overflow-hidden hover:border-purple-500/50 transition-colors'>
@@ -72,9 +73,14 @@ function FeaturedCard({
             <span>{publishDate}</span>
           </div>
         )}
-        <Link to={slug} className='text-purple-500 hover:text-purple-400'>
-          Read more →
-        </Link>
+        {slug && (
+          <Link
+            to={`/articles/${slug}`}
+            className='text-purple-500 hover:text-purple-400'
+          >
+            Read more →
+          </Link>
+        )}
       </CardFooter>
     </Card>
   );

@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
-import type { GlobalData, SharedLink, GlobalQueryRef } from '~/types/global';
+import type { GlobalData, GlobalQueryRef } from '~/types/global';
+import type { SharedLink } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';
 import { Twitter, Facebook, Linkedin } from 'lucide-react';
 

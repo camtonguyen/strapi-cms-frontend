@@ -1,29 +1,6 @@
 import type { QueryRef } from '@apollo/client/react';
 
-// Type definitions based on Strapi schema
-
-export enum ButtonType {
-  PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY',
-  OUTLINE = 'OUTLINE',
-}
-
-export interface SharedLink {
-  id: string;
-  label: string;
-  href: string;
-  isExternal?: boolean;
-  type?: ButtonType;
-}
-
-export interface SharedLogo {
-  href: string;
-  label: string;
-  image?: {
-    url: string;
-    alternativeText: string;
-  };
-}
+import type { SharedLink, SharedLogo, SharedGeneralFields } from './shared';
 
 export interface HeaderData {
   logo: SharedLogo;
@@ -42,9 +19,7 @@ export interface FooterData {
 }
 
 export interface GlobalData {
-  global: {
-    title: string;
-    description: string;
+  global: SharedGeneralFields & {
     header: HeaderData;
     footer: FooterData;
   };

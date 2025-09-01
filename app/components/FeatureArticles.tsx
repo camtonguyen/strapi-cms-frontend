@@ -1,11 +1,17 @@
 import { Eye } from 'lucide-react';
 import { Link } from 'react-router';
-import type { FeatureArticles as FeatureArticlesType } from '~/types/landing';
+import type { FeatureArticles as FeatureArticlesType } from '~/types/blocks';
 import FeaturedCard from './FeatureCard';
 
-interface FeatureArticlesProps extends FeatureArticlesType {}
+interface FeatureArticlesProps extends FeatureArticlesType {
+  hasViewAll?: boolean;
+}
 
-export function FeatureArticles({ title, articles }: FeatureArticlesProps) {
+export function FeatureArticles({
+  title,
+  articles,
+  hasViewAll = true,
+}: FeatureArticlesProps) {
   return (
     <section className='mb-20'>
       <div className='flex items-center justify-between mb-8'>
