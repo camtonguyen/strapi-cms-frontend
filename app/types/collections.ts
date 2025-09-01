@@ -14,10 +14,14 @@ export interface TopicTag {
 }
 
 export interface Article extends SharedGeneralFields {
-  documentId: string;
   slug: string;
   content?: BlocksContent;
   publishDate: string;
   image?: ImageType;
   topics?: TopicTag[];
+}
+
+export interface Topic extends SharedGeneralFields, TopicTag {
+  slug: string;
+  articles?: Article[];
 }

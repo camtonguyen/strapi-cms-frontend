@@ -1,10 +1,12 @@
 import { gql } from '@apollo/client';
-import { createQueryLoader } from '~/utils/queryLoader';
-import { MARKDOWN_FRAGMENT } from '../fragments/blocks/markdown';
+import { FEATURE_ARTICLES_FRAGMENT } from '../fragments/blocks/featureArticles';
+import { PLAIN_CONTENT_FRAGMENT } from '../fragments/blocks/plainContent';
+import { FEATURE_TOPICS_FRAGMENT } from '../fragments/blocks/featureTopics';
 
 export const PAGE_QUERY = gql`
-  ${MARKDOWN_FRAGMENT}
-
+  ${PLAIN_CONTENT_FRAGMENT}
+  ${FEATURE_ARTICLES_FRAGMENT}
+  ${FEATURE_TOPICS_FRAGMENT}
   query GetPage($slug: String!) {
     pages(filters: { slug: { eq: $slug } }) {
       documentId
@@ -12,7 +14,9 @@ export const PAGE_QUERY = gql`
       slug
       blocks {
         __typename
-        ...MarkdownFields
+        ...PlainContentFields
+        ...FeatureArticlesFields
+        ...FeatureTopicsFields
       }
     }
   }

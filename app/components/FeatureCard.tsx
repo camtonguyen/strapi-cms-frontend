@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+import { Clock } from 'lucide-react';
 import {
   Card,
   CardHeader,
@@ -6,19 +8,10 @@ import {
   CardDescription,
   CardFooter,
 } from '~/components/ui/card';
-import { Link } from 'react-router';
-import { BrainCircuit, Clock, Eye } from 'lucide-react';
+import { CATEGORY_ICONS } from '~/components/atoms';
 import type { TopicTag } from '~/types/collections';
 import type { ImageType } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';
-
-const CATEGORY_ICONS = {
-  AI: <BrainCircuit className='h-5 w-5' />,
-  VISION: <Eye className='h-5 w-5' />,
-  RESEARCH: <BrainCircuit className='h-5 w-5' />,
-  GENERAL: <BrainCircuit className='h-5 w-5' />,
-};
-
 interface FeaturedCardProps {
   title: string;
   image: ImageType | undefined;
