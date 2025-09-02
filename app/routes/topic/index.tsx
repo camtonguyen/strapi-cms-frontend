@@ -2,7 +2,7 @@ import { useLocation, useParams } from 'react-router';
 import { TOPIC_QUERY } from '~/queries/pages/topic';
 import type { Topic } from '~/types/collections';
 import { useQuery } from '@apollo/client/react';
-import { FeatureArticles } from '~/components/';
+import { FeatureArticles, Loading } from '~/components/';
 
 const Topic = () => {
   const location = useLocation();
@@ -15,6 +15,9 @@ const Topic = () => {
   });
 
   const { topic } = stateData || {};
+  if (!stateData) {
+    return <Loading />;
+  }
   return (
     <>
       {topic && (

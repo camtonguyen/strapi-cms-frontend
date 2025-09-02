@@ -12,7 +12,6 @@ import {
 } from '~/components/';
 import type { TopicTag } from '~/types/collections';
 import type { ImageType } from '~/types/shared';
-import { getStrapiUrl } from '~/utils/strapiUrl';
 interface FeaturedCardProps {
   title: string;
   image: ImageType | undefined;
@@ -33,16 +32,15 @@ function FeaturedCard({
 }: FeaturedCardProps) {
   return (
     <Card className='bg-gray-900 flex flex-col justify-between pt-0 border-gray-800 overflow-hidden hover:border-purple-500/50 transition-colors'>
-      {image && (
-        <div className='relative h-48 overflow-hidden'>
-          <Image
-            width={300}
-            height={200}
-            image={image}
-            className='object-cover w-full h-full'
-          />
-        </div>
-      )}
+      <div className='relative h-48 overflow-hidden'>
+        <Image
+          width={300}
+          height={200}
+          image={image}
+          className='object-cover w-full h-full'
+        />
+      </div>
+
       <CardHeader>
         {topic && (
           <div className='flex items-center gap-2 text-sm text-purple-500 mb-2'>

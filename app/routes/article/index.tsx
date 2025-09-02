@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client/react';
 import type { Article } from '~/types/collections';
 import { ARTICLE_QUERY } from '~/queries/pages/article';
 import { ArrowLeft, Clock } from 'lucide-react';
-import { CATEGORY_ICONS, ShareWith, Image } from '~/components/';
+import { CATEGORY_ICONS, ShareWith, Image, Loading } from '~/components/';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 const Article = () => {
@@ -18,6 +18,10 @@ const Article = () => {
 
   const { title, content, image, author, publishDate, timeRead, topics } =
     stateData?.article || {};
+
+  if (!stateData) {
+    return <Loading />;
+  }
 
   return (
     <section className='html-content'>
@@ -50,17 +54,21 @@ const Article = () => {
         {publishDate && <div>{publishDate}</div>}
         {author && <div>By {author}</div>}
       </div>
-      {image && (
-        <div className='relative h-[400px] md:h-[500px] rounded-xl overflow-hidden border border-gray-800 mb-8'>
-          <Image
-            width={500}
-            height={400}
-            image={image}
-            className='object-cover w-full h-full'
-          />
-        </div>
+
+      {title && (
+        <>
+          <div className='relative h-[400px] md:h-[500px] rounded-xl overflow-hidden border border-gray-800 mb-8'>
+            <Image
+              width={500}
+              height={400}
+              image={image}
+              className='object-cover w-full h-full'
+            />
+          </div>
+          <ShareWith title={title} />
+        </>
       )}
-      <ShareWith title={title} />
+
       <BlocksRenderer content={content || []} />
     </section>
   );

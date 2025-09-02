@@ -26,16 +26,12 @@ const Footer = () => {
             to={footer.logo.href || '/'}
             className='text-xl font-bold tracking-tighter flex items-center justify-center'
           >
-            {footer.logo.image?.url ? (
-              <Image
-                width={100}
-                height={40}
-                fallbackImage='/blog_logo.png'
-                image={footer.logo.image}
-              />
-            ) : (
-              footer.logo.label
-            )}
+            <Image
+              width={100}
+              height={40}
+              image={footer.logo.image}
+              fallbackImage='/blog_logo.png'
+            />
           </Link>
           {footer.shortIntro && (
             <p className='text-gray-400 text-sm mt-4 mb-6'>
