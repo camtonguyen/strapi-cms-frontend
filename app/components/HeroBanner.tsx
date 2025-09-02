@@ -30,7 +30,7 @@ export function HeroBanner({
             {buttons?.map((button, index) => {
               const buttonClass =
                 button.type === ButtonType.PRIMARY
-                  ? 'rounded-md px-4 py-1.5 bg-purple-600 hover:bg-purple-700 cursor-pointer'
+                  ? 'rounded-md text-center px-4 py-1.5 bg-purple-600 hover:bg-purple-700 cursor-pointer'
                   : 'border-1 border-gray-700 hover:border-gray-500 cursor-pointer';
               return (
                 <Fragment key={`${button.id}-${button.label}-${index}`}>
