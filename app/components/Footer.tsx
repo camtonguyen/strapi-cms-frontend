@@ -2,8 +2,8 @@ import { Link, useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
 import type { GlobalData, GlobalQueryRef } from '~/types/global';
 import type { SharedLink } from '~/types/shared';
-import { getStrapiUrl } from '~/utils/strapiUrl';
 import { Twitter, Facebook, Linkedin } from 'lucide-react';
+import { Image } from '~/components/';
 
 // Type for the parent layout loader data
 type LayoutData = {
@@ -27,11 +27,11 @@ const Footer = () => {
             className='text-xl font-bold tracking-tighter flex items-center justify-center'
           >
             {footer.logo.image?.url ? (
-              <img
+              <Image
                 width={100}
                 height={40}
-                src={getStrapiUrl(footer.logo.image.url)}
-                alt={footer.logo.image.alternativeText || footer.logo.label}
+                fallbackImage='/blog_logo.png'
+                image={footer.logo.image}
               />
             ) : (
               footer.logo.label

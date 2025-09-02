@@ -8,6 +8,7 @@ import {
   CardDescription,
   CardFooter,
   CATEGORY_ICONS,
+  Image,
 } from '~/components/';
 import type { TopicTag } from '~/types/collections';
 import type { ImageType } from '~/types/shared';
@@ -34,10 +35,11 @@ function FeaturedCard({
     <Card className='bg-gray-900 flex flex-col justify-between pt-0 border-gray-800 overflow-hidden hover:border-purple-500/50 transition-colors'>
       {image && (
         <div className='relative h-48 overflow-hidden'>
-          <img
-            src={getStrapiUrl(image.url)}
-            alt={image.alternativeText}
-            className='object-cover'
+          <Image
+            width={300}
+            height={200}
+            image={image}
+            className='object-cover w-full h-full'
           />
         </div>
       )}

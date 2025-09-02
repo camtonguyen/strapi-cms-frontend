@@ -1,9 +1,8 @@
 import { Link, NavLink, useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
 import type { GlobalData, GlobalQueryRef } from '~/types/global';
-import type { SharedLink } from '~/types/shared';
-import { getStrapiUrl } from '~/utils/strapiUrl';
-import { Button } from '~/components/';
+import type { ImageType, SharedLink } from '~/types/shared';
+import { Button, Image } from '~/components/';
 
 // Type for the parent layout loader data
 type LayoutData = {
@@ -27,11 +26,11 @@ const Header = () => {
           className='text-xl font-bold tracking-tighter'
         >
           {header.logo.image?.url ? (
-            <img
+            <Image
               width={100}
               height={40}
-              src={getStrapiUrl(header.logo.image.url)}
-              alt={header.logo.image.alternativeText || header.logo.label}
+              fallbackImage='/blog_logo.png'
+              image={header.logo.image}
             />
           ) : (
             header.logo.label

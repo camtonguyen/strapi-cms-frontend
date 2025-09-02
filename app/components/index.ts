@@ -31,4 +31,6 @@ export { Newsletter } from './Newsletter';
 export { NotFound } from './NotFound';
 export { default as TopicCard } from './TopicCard';
 export { default as ShareWith } from './ShareWith';
+export { Image } from './Image';
 export { CATEGORY_ICONS } from './atoms';
+export { default as Loading } from './Loading';

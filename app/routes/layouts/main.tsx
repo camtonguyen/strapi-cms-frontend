@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
-import { Header, Footer, ToastProvider } from '~/components/';
+import { Suspense } from 'react';
+import { Header, Footer, ToastProvider, Loading } from '~/components/';
 import { createQueryLoader } from '~/utils/queryLoader';
 import { GLOBAL_QUERY } from '~/queries/global/global';
 
@@ -12,7 +13,9 @@ const MainLayout = () => {
       <div className='min-h-screen bg-black text-white px-4 min-lg:px-2'>
         <Header />
         <main className='container mx-auto py-12 min-h-[50vh] flex-1'>
-          <Outlet />
+          <Suspense fallback={<Loading />}>
+            <Outlet />
+          </Suspense>
         </main>
         <Footer />
       </div>

@@ -1,4 +1,4 @@
-import { useToast, useToastHelpers } from './ToastProvider';
+import { useToastHelpers } from './ToastProvider';
 import { Twitter, Facebook, Linkedin, Share2 } from 'lucide-react';
 import { Button } from '~/components/';
 

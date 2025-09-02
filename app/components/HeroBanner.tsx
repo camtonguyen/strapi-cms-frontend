@@ -1,9 +1,8 @@
 import { Link } from 'react-router';
 import type { HeroBanner as HeroBannerType } from '~/types/blocks';
 import { ButtonType } from '~/types/shared';
-import { getStrapiUrl } from '~/utils/strapiUrl';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-import { Button } from '~/components/';
+import { Button, Image } from '~/components/';
 
 interface HeroBannerProps extends HeroBannerType {}
 export function HeroBanner({
@@ -46,10 +45,11 @@ export function HeroBanner({
         </div>
         {image && (
           <div className='relative h-[400px] rounded-xl overflow-hidden border border-gray-800'>
-            <img
-              src={getStrapiUrl(image.url)}
-              alt={image.alternativeText}
-              className='object-cover'
+            <Image
+              width={500}
+              height={400}
+              image={image}
+              className='object-cover w-full h-full'
             />
             <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent'></div>
           </div>
