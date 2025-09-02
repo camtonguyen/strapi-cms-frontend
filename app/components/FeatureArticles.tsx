@@ -30,8 +30,8 @@ export function FeatureArticles({
           {articles.map((article) => (
             <FeaturedCard
               key={article.documentId}
-              title={article.title}
-              description={article.description}
+              title={article.title || ''}
+              description={article.description || ''}
               image={article.image}
               publishDate={article.publishDate}
               topic={article?.topics?.[0]}

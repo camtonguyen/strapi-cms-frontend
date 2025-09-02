@@ -3,8 +3,7 @@ import { useQuery } from '@apollo/client/react';
 import type { Article } from '~/types/collections';
 import { ARTICLE_QUERY } from '~/queries/pages/article';
 import { ArrowLeft, Clock } from 'lucide-react';
-import { CATEGORY_ICONS, ShareWith } from '~/components/';
-import { getStrapiUrl } from '~/utils/strapiUrl';
+import { CATEGORY_ICONS, ShareWith, Image } from '~/components/';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 const Article = () => {
@@ -53,9 +52,10 @@ const Article = () => {
       </div>
       {image && (
         <div className='relative h-[400px] md:h-[500px] rounded-xl overflow-hidden border border-gray-800 mb-8'>
-          <img
-            src={getStrapiUrl(image.url)}
-            alt={image.alternativeText || 'Article Image'}
+          <Image
+            width={500}
+            height={400}
+            image={image}
             className='object-cover w-full h-full'
           />
         </div>
