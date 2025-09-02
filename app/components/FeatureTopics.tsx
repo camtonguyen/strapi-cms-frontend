@@ -12,11 +12,12 @@ export function FeatureTopics({ title, topics }: FeatureTopicsProps) {
         {topics?.map((topic, index) => (
           <TopicCard
             key={index}
-            title={topic.name}
+            name={topic.name}
             description={topic.description}
             icon={topic.type || TopicTagType.GENERAL}
             count={topic.articles?.length || 0}
             slug={topic.slug}
+            documentId={topic.documentId}
           />
         ))}
       </div>

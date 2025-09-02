@@ -5,9 +5,7 @@ import type { Page, PageBlock } from '~/types/page';
 import { createQueryLoader } from '~/utils/queryLoader';
 import { PAGE_QUERY } from '~/queries/pages/page';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-import { FeatureArticles } from '~/components/FeatureArticles';
-import { FeatureTopics } from '~/components/FeatureTopics';
-import { NotFound } from '~/components/NotFound';
+import { FeatureArticles, FeatureTopics, NotFound } from '~/components/';
 import { ComponentBlocks } from '~/utils/constants';
 
 export const loader = createQueryLoader(

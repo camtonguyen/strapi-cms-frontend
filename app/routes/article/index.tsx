@@ -2,18 +2,10 @@ import { Link, useLocation, useParams } from 'react-router';
 import { useQuery } from '@apollo/client/react';
 import type { Article } from '~/types/collections';
 import { ARTICLE_QUERY } from '~/queries/pages/article';
-import {
-  ArrowLeft,
-  Clock,
-  Twitter,
-  Facebook,
-  Linkedin,
-  Share2,
-} from 'lucide-react';
-import { CATEGORY_ICONS } from '~/components/atoms';
+import { ArrowLeft, Clock } from 'lucide-react';
+import { CATEGORY_ICONS, ShareWith } from '~/components/';
 import { getStrapiUrl } from '~/utils/strapiUrl';
-import { Button } from '~/components/ui/button';
-import { BlocksRenderer } from 'node_modules/@strapi/blocks-react-renderer/dist/BlocksRenderer';
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 const Article = () => {
   const location = useLocation();
@@ -27,39 +19,6 @@ const Article = () => {
 
   const { title, content, image, author, publishDate, timeRead, topics } =
     stateData?.article || {};
-
-  const handleShare = (platform: string) => {
-    const url = window.location.href;
-    const text = `Check out this article: ${title}`;
-
-    let shareUrl = '';
-
-    switch (platform) {
-      case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-          url
-        )}&text=${encodeURIComponent(text)}`;
-        break;
-      case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          url
-        )}`;
-        break;
-      case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-          url
-        )}`;
-        break;
-      default:
-        // Copy to clipboard
-        navigator.clipboard.writeText(url);
-        return;
-    }
-
-    if (shareUrl) {
-      window.open(shareUrl, '_blank');
-    }
-  };
 
   return (
     <section className='html-content'>
@@ -101,46 +60,7 @@ const Article = () => {
           />
         </div>
       )}
-      <div className='flex justify-between items-center mb-8'>
-        <div className='flex gap-2'>
-          <Button
-            variant='outline'
-            size='sm'
-            className='bg-transparent cursor-pointer group h-8 px-3 border-gray-800 hover:bg-gray-900'
-            onClick={() => handleShare('twitter')}
-          >
-            <Twitter className='h-4 w-4 mr-1 group-hover:text-white' />
-            <span className='group-hover:text-white'>Share</span>
-          </Button>
-          <Button
-            variant='outline'
-            size='sm'
-            className='bg-transparent cursor-pointer group px-3 border-gray-800 hover:bg-gray-900'
-            onClick={() => handleShare('facebook')}
-          >
-            <Facebook className='h-4 w-4 mr-1 group-hover:text-white' />
-            <span className='group-hover:text-white'>Share</span>
-          </Button>
-          <Button
-            variant='outline'
-            size='sm'
-            className='bg-transparent cursor-pointer group h-8 px-3 border-gray-800 hover:bg-gray-900'
-            onClick={() => handleShare('linkedin')}
-          >
-            <Linkedin className='h-4 w-4 mr-1 group-hover:text-white' />
-            <span className='group-hover:text-white'>Share</span>
-          </Button>
-        </div>
-        <Button
-          variant='outline'
-          size='sm'
-          className='bg-transparent cursor-pointer group h-8 px-3 border-gray-800 hover:bg-gray-900'
-          onClick={() => handleShare('clipboard')}
-        >
-          <Share2 className='h-4 w-4 mr-1 group-hover:text-white' />
-          <span className='group-hover:text-white'>Share</span>
-        </Button>
-      </div>
+      <ShareWith title={title} />
       <BlocksRenderer content={content || []} />
     </section>
   );

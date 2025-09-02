@@ -6,27 +6,25 @@ import {
   CardContent,
   CardDescription,
   CardFooter,
-} from '~/components/ui/card';
-import { CATEGORY_ICONS } from './atoms';
-import type { TopicTagType } from '~/types/collections';
+  CATEGORY_ICONS,
+} from '~/components/';
+import type { TopicTagType, Topic } from '~/types/collections';
 
-interface TopicCardProps {
-  title: string;
-  description: string;
+interface TopicCardProps extends Topic {
   icon: TopicTagType;
   count: number;
-  slug: string;
 }
 
 function TopicCard({
-  title,
+  name,
   description,
   icon,
   count,
-  slug = '',
+  documentId,
+  slug,
 }: TopicCardProps) {
   return (
-    <Link to={`/articles/${slug}`} className='group'>
+    <Link state={{ id: documentId }} to={`/articles/${slug}`} className='group'>
       <Card className='bg-gray-900 border-gray-800 hover:border-purple-500/50 transition-colors h-full'>
         <CardHeader>
           <div className='flex items-center justify-between'>
@@ -40,7 +38,7 @@ function TopicCard({
             )}
           </div>
           <CardTitle className='text-xl mt-4 group-hover:text-purple-400 transition-colors text-white'>
-            {title}
+            {name}
           </CardTitle>
         </CardHeader>
         <CardContent>

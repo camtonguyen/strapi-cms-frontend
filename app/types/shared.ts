@@ -36,6 +36,6 @@ export interface SharedLogo {
 export interface SharedGeneralFields {
   id?: string;
   documentId?: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 }
