@@ -1,7 +1,7 @@
 import { Link, NavLink, useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
 import type { GlobalData, GlobalQueryRef } from '~/types/global';
-import type { ImageType, SharedLink } from '~/types/shared';
+import type { SharedLink } from '~/types/shared';
 import { Button, Image } from '~/components/';
 
 // Type for the parent layout loader data
@@ -21,10 +21,7 @@ const Header = () => {
     <header className='container mx-auto py-6'>
       <div className='flex items-center justify-between'>
         {/* Logo */}
-        <Link
-          to={header.logo.href || '/'}
-          className='text-xl font-bold tracking-tighter'
-        >
+        <Link to={header.logo.href || '/'} className='max-md:max-w-[80px]'>
           <Image
             width={100}
             height={40}
@@ -34,10 +31,7 @@ const Header = () => {
         </Link>
 
         {/* Navigation Items */}
-        <nav
-          role='navigation'
-          className='hidden md:flex items-center space-x-6 text-sm'
-        >
+        <nav role='navigation' className='flex items-center space-x-6 text-sm'>
           {header.navItems?.map((item: SharedLink) => (
             <NavLink
               key={item.id}
@@ -56,7 +50,7 @@ const Header = () => {
 
         {/* CTA Button */}
         {header.cta && (
-          <Button className='bg-purple-600 hover:bg-purple-700 whitespace-nowrap cursor-pointer'>
+          <Button className='bg-purple-600 max-md:hidden hover:bg-purple-700 whitespace-nowrap cursor-pointer'>
             {header.cta.label}
           </Button>
         )}
