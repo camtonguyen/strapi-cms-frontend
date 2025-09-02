@@ -25,16 +25,12 @@ const Header = () => {
           to={header.logo.href || '/'}
           className='text-xl font-bold tracking-tighter'
         >
-          {header.logo.image?.url ? (
-            <Image
-              width={100}
-              height={40}
-              fallbackImage='/blog_logo.png'
-              image={header.logo.image}
-            />
-          ) : (
-            header.logo.label
-          )}
+          <Image
+            width={100}
+            height={40}
+            image={header.logo.image}
+            fallbackImage='/blog_logo.png'
+          />
         </Link>
 
         {/* Navigation Items */}

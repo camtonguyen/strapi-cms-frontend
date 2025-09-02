@@ -1,7 +1,6 @@
 import type { ImageType } from '~/types/shared';
-import { getStrapiUrl } from '~/utils/strapiUrl';
 interface ImageProps {
-  image: ImageType;
+  image?: ImageType;
   className?: string;
   width?: number;
   height?: number;
@@ -17,11 +16,7 @@ export function Image({
 }: ImageProps) {
   return (
     <img
-      src={
-        image?.url
-          ? getStrapiUrl(image.url)
-          : fallbackImage || '/placeholder.png'
-      }
+      src={image?.url ? image.url : fallbackImage || '/placeholder.png'}
       alt={image?.alternativeText || ''}
       className={className}
       width={width}

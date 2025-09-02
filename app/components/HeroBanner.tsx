@@ -43,17 +43,15 @@ export function HeroBanner({
             })}
           </div>
         </div>
-        {image && (
-          <div className='relative h-[400px] rounded-xl overflow-hidden border border-gray-800'>
-            <Image
-              width={500}
-              height={400}
-              image={image}
-              className='object-cover w-full h-full'
-            />
-            <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent'></div>
-          </div>
-        )}
+        <div className='relative h-[400px] rounded-xl overflow-hidden border border-gray-800'>
+          <Image
+            width={500}
+            height={400}
+            image={image}
+            className='object-cover w-full h-full'
+          />
+          <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent'></div>
+        </div>
       </div>
     </section>
   );
