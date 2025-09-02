@@ -5,9 +5,7 @@ import { useLoaderData } from 'react-router';
 import { createQueryLoader } from '~/utils/queryLoader';
 import { LANDING_QUERY } from '~/queries/pages/landing';
 
-import { HeroBanner } from '~/components/HeroBanner';
-import { FeatureArticles } from '~/components/FeatureArticles';
-import { Newsletter } from '~/components/Newsletter';
+import { HeroBanner, FeatureArticles, Newsletter } from '~/components/';
 
 export function meta({}: Route.MetaArgs) {
   return [

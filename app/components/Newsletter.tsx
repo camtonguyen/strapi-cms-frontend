@@ -1,6 +1,5 @@
 import type { Newsletter as NewsletterType } from '~/types/blocks';
-import { Input } from '~/components/ui/input';
-import { Button } from '~/components/ui/button';
+import { Input, Button } from '~/components/';
 
 interface NewsletterProps extends NewsletterType {}
 

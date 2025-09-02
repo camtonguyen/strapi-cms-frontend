@@ -3,7 +3,7 @@ import { useReadQuery } from '@apollo/client/react';
 import type { GlobalData, GlobalQueryRef } from '~/types/global';
 import type { SharedLink } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';
-import { Button } from '~/components/ui/button';
+import { Button } from '~/components/';
 
 // Type for the parent layout loader data
 type LayoutData = {

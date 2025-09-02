@@ -7,8 +7,8 @@ import {
   CardContent,
   CardDescription,
   CardFooter,
-} from '~/components/ui/card';
-import { CATEGORY_ICONS } from '~/components/atoms';
+  CATEGORY_ICONS,
+} from '~/components/';
 import type { TopicTag } from '~/types/collections';
 import type { ImageType } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';

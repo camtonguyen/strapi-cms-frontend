@@ -3,7 +3,7 @@ import type { HeroBanner as HeroBannerType } from '~/types/blocks';
 import { ButtonType } from '~/types/shared';
 import { getStrapiUrl } from '~/utils/strapiUrl';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-import { Button } from '~/components/ui/button';
+import { Button } from '~/components/';
 
 interface HeroBannerProps extends HeroBannerType {}
 export function HeroBanner({
