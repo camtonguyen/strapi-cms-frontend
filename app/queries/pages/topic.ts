@@ -23,3 +23,12 @@ export const TOPIC_QUERY = gql`
     }
   }
 `;
+
+export const TOPIC_SEO_QUERY = gql`
+  query GetTopicSEO($slug: String!) {
+    topics(filters: { slug: { eq: $slug } }) {
+      name
+      description
+    }
+  }
+`;

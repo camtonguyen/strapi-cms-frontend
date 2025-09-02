@@ -29,3 +29,12 @@ export const ARTICLE_QUERY = gql`
     }
   }
 `;
+
+export const ARTICLE_SEO_QUERY = gql`
+  query GetArticleSEO($slug: String!) {
+    articles(filters: { slug: { eq: $slug } }) {
+      title
+      description
+    }
+  }
+`;

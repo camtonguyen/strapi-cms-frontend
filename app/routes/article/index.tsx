@@ -1,10 +1,23 @@
 import { Link, useLocation, useParams } from 'react-router';
 import { useQuery } from '@apollo/client/react';
 import type { Article } from '~/types/collections';
-import { ARTICLE_QUERY } from '~/queries/pages/article';
+import { ARTICLE_QUERY, ARTICLE_SEO_QUERY } from '~/queries/pages/article';
 import { ArrowLeft, Clock } from 'lucide-react';
 import { CATEGORY_ICONS, ShareWith, Image, Loading } from '~/components/';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import { createMetaFromMatches, createSeoLoader } from '~/utils/seo';
+
+export const loader = createSeoLoader(
+  ARTICLE_SEO_QUERY,
+  ({ request }) => {
+    const url = new URL(request.url);
+    const slug = url.pathname.split('/')[2] || '';
+    return { slug };
+  },
+  { collectionKey: 'articles' }
+);
+
+export const meta = createMetaFromMatches('routes/article/index');
 
 const Article = () => {
   const location = useLocation();
