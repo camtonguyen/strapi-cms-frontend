@@ -1,8 +1,21 @@
 import { useLocation, useParams } from 'react-router';
-import { TOPIC_QUERY } from '~/queries/pages/topic';
+import { TOPIC_QUERY, TOPIC_SEO_QUERY } from '~/queries/pages/topic';
 import type { Topic } from '~/types/collections';
 import { useQuery } from '@apollo/client/react';
 import { FeatureArticles, Loading } from '~/components/';
+import { createMetaFromMatches, createSeoLoader } from '~/utils/seo';
+
+export const loader = createSeoLoader(
+  TOPIC_SEO_QUERY,
+  ({ request }) => {
+    const url = new URL(request.url);
+    const slug = url.pathname.split('/')[2] || '';
+    return { slug };
+  },
+  { collectionKey: 'topics', titleKey: 'name' }
+);
+
+export const meta = createMetaFromMatches('routes/topic/index');
 
 const Topic = () => {
   const location = useLocation();

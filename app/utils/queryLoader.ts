@@ -26,21 +26,3 @@ export const createQueryLoader = <
     } as Record<TQueryKey, typeof queryRef>;
   });
 };
-
-/**
- * @param queries - Array of query configurations
- * @returns A loader function that preloads all queries
- */
-export const createMultiQueryLoader = <T extends Record<string, DocumentNode>>(
-  queries: T
-) => {
-  return apolloLoader<LoaderFunctionArgs>()(({ preloadQuery }) => {
-    const result: Record<string, any> = {};
-
-    Object.entries(queries).forEach(([key, query]) => {
-      result[key] = preloadQuery(query);
-    });
-
-    return result;
-  });
-};

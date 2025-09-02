@@ -2,19 +2,38 @@ import { useLoaderData } from 'react-router';
 import { useReadQuery } from '@apollo/client/react';
 import type { PageQueryRef } from '~/types/page';
 import type { Page, PageBlock } from '~/types/page';
-import { createQueryLoader } from '~/utils/queryLoader';
-import { PAGE_QUERY } from '~/queries/pages/page';
+import { createQueryLoaderWithSeo, createMetaFromMatches } from '~/utils/seo';
+import { PAGE_QUERY, PAGE_SEO_QUERY } from '~/queries/pages/page';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { FeatureArticles, FeatureTopics, NotFound } from '~/components/';
 import { ComponentBlocks } from '~/utils/constants';
 
-export const loader = createQueryLoader(
+export const loader = createQueryLoaderWithSeo(
   PAGE_QUERY,
   'pageQueryRef',
-  ({ params }) => ({ slug: params.slug || '' })
+  ({ params }) => ({ slug: params.slug || '' }),
+  PAGE_SEO_QUERY,
+  ({ params }) => ({ slug: params.slug || '' }),
+  (
+    data:
+      | {
+          pages?: Array<{ title?: string | null; description?: string | null }>;
+        }
+      | undefined
+  ) => {
+    const page = data?.pages?.[0];
+    return {
+      title: page?.title ?? null,
+      description: page?.description ?? null,
+    };
+  }
 );
 
-// Type for the loader data
+export const meta = createMetaFromMatches('routes/page/index', {
+  siteName: 'AI Blog',
+  defaultDescription: 'Basic Blog App using React & Strapi CMS',
+});
+
 type LoaderData = {
   pageQueryRef: PageQueryRef;
 };

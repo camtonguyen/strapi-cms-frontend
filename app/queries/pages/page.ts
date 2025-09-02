@@ -21,3 +21,12 @@ export const PAGE_QUERY = gql`
     }
   }
 `;
+
+export const PAGE_SEO_QUERY = gql`
+  query GetPageSEO($slug: String!) {
+    pages(filters: { slug: { eq: $slug } }) {
+      title
+      description
+    }
+  }
+`;

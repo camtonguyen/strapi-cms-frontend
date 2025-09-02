@@ -2,20 +2,41 @@ import type { Route } from './+types/index';
 import { useReadQuery } from '@apollo/client/react';
 import type { LandingData, LandingQueryRef } from '~/types/landing';
 import { useLoaderData } from 'react-router';
-import { createQueryLoader } from '~/utils/queryLoader';
-import { LANDING_QUERY } from '~/queries/pages/landing';
-
+import { createQueryLoaderWithSeo, createMetaFromMatches } from '~/utils/seo';
+import { LANDING_QUERY, LANDING_SEO_QUERY } from '~/queries/pages/landing';
 import { HeroBanner, FeatureArticles, Newsletter } from '~/components/';
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: 'AI Blog | Home' },
-    { name: 'description', content: 'Basic Blog App using React & Strapi CMS' },
-  ];
-}
+export const loader = createQueryLoaderWithSeo(
+  LANDING_QUERY,
+  'landingQueryRef',
+  undefined,
+  LANDING_SEO_QUERY,
+  undefined,
+  (
+    data:
+      | {
+          landingPage?: {
+            title?: string | null;
+            description?: string | null;
+          } | null;
+        }
+      | undefined
+  ) => {
+    if (!data?.landingPage) return { title: null, description: null };
+    return {
+      title: data.landingPage.title ?? null,
+      description: data.landingPage.description ?? null,
+    };
+  }
+);
+
+export const meta = createMetaFromMatches('routes/home/index', {
+  siteName: 'AI Blog',
+  defaultDescription: 'Basic Blog App using React & Strapi CMS',
+});
 
 // Load the landing query in the index route
-export const loader = createQueryLoader(LANDING_QUERY, 'landingQueryRef');
+// export const loader = createQueryLoader(LANDING_QUERY, 'landingQueryRef');
 
 type QueryData = {
   landingQueryRef: LandingQueryRef;

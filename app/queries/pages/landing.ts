@@ -23,3 +23,12 @@ export const LANDING_QUERY = gql`
     }
   }
 `;
+
+export const LANDING_SEO_QUERY = gql`
+  query GetLandingSeo {
+    landingPage {
+      title
+      description
+    }
+  }
+`;
