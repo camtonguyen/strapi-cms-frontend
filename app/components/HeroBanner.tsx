@@ -3,6 +3,7 @@ import type { HeroBanner as HeroBannerType } from '~/types/blocks';
 import { ButtonType } from '~/types/shared';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { Button, Image } from '~/components/';
+import { Fragment } from 'react';
 
 interface HeroBannerProps extends HeroBannerType {}
 export function HeroBanner({
@@ -26,19 +27,25 @@ export function HeroBanner({
             </div>
           )}
           <div className='flex flex-col sm:flex-row gap-4'>
-            {buttons?.map((button) => {
+            {buttons?.map((button, index) => {
               const buttonClass =
                 button.type === ButtonType.PRIMARY
-                  ? 'bg-purple-600 hover:bg-purple-700 cursor-pointer'
+                  ? 'rounded-md px-4 py-1.5 bg-purple-600 hover:bg-purple-700 cursor-pointer'
                   : 'border-1 border-gray-700 hover:border-gray-500 cursor-pointer';
               return (
-                <Button key={button.id} className={buttonClass}>
+                <Fragment key={`${button.id}-${button.label}-${index}`}>
                   {button.href ? (
-                    <Link to={button.href}>{button.label}</Link>
+                    <Link
+                      className={buttonClass}
+                      to={button.href}
+                      aria-label={button.label}
+                    >
+                      {button.label}
+                    </Link>
                   ) : (
-                    button.label
+                    <Button className={buttonClass}>{button.label}</Button>
                   )}
-                </Button>
+                </Fragment>
               );
             })}
           </div>
@@ -49,6 +56,7 @@ export function HeroBanner({
             height={400}
             image={image}
             className='object-cover w-full h-full'
+            props={{ fetchPriority: 'high' }}
           />
           <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent'></div>
         </div>

@@ -52,6 +52,7 @@ const Footer = () => {
                     key={item.id}
                     to={item.href}
                     className='text-gray-400 hover:text-white'
+                    aria-label={item.label}
                   >
                     <Icon className='h-5 w-5' />
                   </Link>

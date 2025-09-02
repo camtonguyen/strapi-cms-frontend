@@ -5,6 +5,7 @@ interface ImageProps {
   width?: number;
   height?: number;
   fallbackImage?: string;
+  props?: React.ImgHTMLAttributes<HTMLImageElement>;
 }
 
 export function Image({
@@ -13,9 +14,11 @@ export function Image({
   width,
   height,
   fallbackImage,
+  props,
 }: ImageProps) {
   return (
     <img
+      {...props}
       src={image?.url ? image.url : fallbackImage || '/placeholder.png'}
       alt={image?.alternativeText || ''}
       className={className}
